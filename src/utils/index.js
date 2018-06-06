@@ -47,10 +47,16 @@ export default {
   },
   checkPlugins() {
     const UA = window.navigator.userAgent.toLocaleUpperCase();
-    if(UA.indexOf('ANDROID') > -1 || UA.indexOf('IOS') > -1 || UA.indexOf('IPHONE') > -1 || UA.indexOf('IPAD') > -1) {
+    if(UA.indexOf('ANDROID') > -1) {
       return {
         type: 'mobile',
+        platform: 'android',
       }
+    } else if(UA.indexOf('IPHONE') > -1 || UA.indexOf('IPAD') > -1) {
+        return {
+          type: 'mobile',
+          platform: 'ios',
+        }
     } else {
       return {
         type: 'pc',

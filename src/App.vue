@@ -66,7 +66,8 @@
           <Alert v-if="checkResult.type === 'mobile'" type="warning">
             温馨提示
             <template slot="desc">
-              <span>检测到您正在使用移动端浏览，请检查是否安装Nano钱包 </span>
+              <span v-if="checkResult.platform == 'ios'">检测到您正在使用移动端浏览，请检查是否安装<a href="https://itunes.apple.com/hk/app/nas-nano/id1281191905?l=zh&ls=1&mt=8">Nano钱包</a> </span>
+              <span v-else>检测到您正在使用移动端浏览，请检查是否安装<a href="https://nano.nebulas.io/index_cn.html">Nano钱包</a> </span>
               <Input v-model="mobileAddress" :disabled="locked" placeholder="输入您的钱包地址">
                 <Button
                   @click="getLock"
@@ -78,7 +79,7 @@
           </Alert>
           <Alert v-if="checkResult.type === 'pc' && !checkResult.plugins" type="warning">
             温馨提示
-            <template slot="desc">检测到您未安装星云钱包，请安装星云钱包后使用！</template>
+            <template slot="desc">检测到您未安装星云钱包，请使用chrome安装<a target="__blank" href="https://github.com/ChengOrangeJu/WebExtensionWallet">星云钱包插件</a>后使用！</template>
           </Alert>
           <router-view/>
         </div>
