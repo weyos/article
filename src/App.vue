@@ -84,7 +84,7 @@
           <router-view/>
         </div>
       </Content>
-      <Footer class="layout-footer-center">power by Nebulas | weyos</Footer>
+      <Footer class="layout-footer-center">Powered by Nebulas | weyos</Footer>
     </Layout>
   </div>
 </template>
