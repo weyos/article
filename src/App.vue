@@ -6,7 +6,11 @@
           <div
             class="layout-logo"
             @click="jumpto('/')"
-          ><Icon type="social-freebsd-devil"></Icon>&emsp;Answer</div>
+          >
+            <!-- <img src="./assets/logo.png"/> -->
+            <Icon type="social-freebsd-devil"></Icon>
+            Article
+          </div>
           <div class="layout-nav">
             <MenuItem name="/">
               <Icon type="ios-ionic-outline"></Icon>
@@ -181,6 +185,13 @@ export default {
   font-weight: bold;
   font-size: 20px;
   cursor: pointer;
+  img {
+    float: left;
+    display: block;
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+  }
 }
 .layout-nav{
   float: right;

@@ -123,7 +123,7 @@
           if(differ == 0) {
             return '已免费开放';
           } else {
-            return `还差${differ}NAS免费开放`;
+            return `还差${differ}NAS全员开放`;
           }
         }
       },
@@ -135,6 +135,7 @@
             content: item.reason,
           });
         }
+
         if(item.currentUserInfo.isAuthor || item.currentUserInfo.isAdmin || item.currentUserInfo.bought || item.type === 'free') {
           // console.log('read');
           this.$router.push({
@@ -144,6 +145,20 @@
             }
           });
         } else {
+          if(item.type === 'total') {
+            let weiTotal = item.weiTotal || 0;
+            let nas = item.nas * 1e18;
+            let differ = nas - weiTotal > 0 ? (nas - weiTotal)/(1e18)*1 : 0;
+            differ = new BigNumber(differ).toFormat();
+            if(differ == 0) {
+              return this.$router.push({
+                name: 'detail',
+                query: {
+                  id: item.id,
+                }
+              });;
+            }
+          }
           this.$Modal.warning({
             title: '温馨提示',
             content: '您还没有购买此内容，购买后可查看！'

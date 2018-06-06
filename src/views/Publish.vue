@@ -150,6 +150,7 @@ export default {
           // this.$Message.success('Success!');
           // console.log(this.formValidate);
           this.$Notice.info({
+            top: 80,
             title: '温馨提示',
             desc: '正在操作钱包',
           });
@@ -160,6 +161,7 @@ export default {
             callback: PAY_HOST,
             listener: (res) => {
               this.$Notice.info({
+                top: 80,
                 title: '温馨提示',
                 desc: '数据正在提交中，请耐心等待！',
               });
@@ -177,6 +179,7 @@ export default {
             this.loading = false;
             this.txhash = null;
             this.$Notice.success({
+              top: 80,
               title: '成功',
               desc: '保存成功！',
             });
@@ -188,11 +191,13 @@ export default {
             if(resp.execute_error) {
               this.loading = false;
               return this.$Notice.error({
+                top: 80,
                 title: '失败',
                 desc: resp.execute_error,
               });
             }
             this.$Notice.info({
+              top: 80,
               title: '温馨提示',
               desc: '正在查询交易结果...',
               duration: 10,
@@ -206,6 +211,7 @@ export default {
           this.loading = false;
           if(this.txhash) {
             this.$Notice.error({
+              top: 80,
               title: '失败',
               desc: err.message,
             });
@@ -213,6 +219,7 @@ export default {
           } else {
             // this.$Message.error('已取消');
             this.$Notice.error({
+              top: 80,
               title: '失败',
               desc: '已取消',
             });

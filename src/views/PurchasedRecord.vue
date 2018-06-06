@@ -90,8 +90,11 @@ export default {
       var gas_price = "1000000"
       var gas_limit = "2000000"
       var contract = {
-        "function": 'queryBuy',
-        "args": JSON.stringify([this.searchType, currentPage]),
+        function: 'queryBuy',
+        args: JSON.stringify([{
+          type: this.searchType,
+          pageNo: currentPage,
+        }]),
       }
 
       neb.api.call(

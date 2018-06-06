@@ -108,7 +108,10 @@ export default {
       const gasLimit = '2000000';
       const contract = {
         function: 'query',
-        args: JSON.stringify([this.searchType, currentPage]),
+        args: JSON.stringify([{
+          type: this.searchType,
+          pageNo: currentPage,
+        }]),
       };
 
       neb.api.call(
@@ -134,7 +137,7 @@ export default {
         } else {
           this.list = data.list;
         }
-        // console.log(data);
+        console.log(data);
       }).catch((err) => {
         this.loading = false;
         this.ready = true;
