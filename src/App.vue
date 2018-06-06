@@ -156,13 +156,14 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
   min-height: 100vh;
+  border-radius: 0;
 }
 .ivu-layout-content {
   padding: 0 50px 50px;
   margin: 20px 0;
 }
 .layout{
-  border: 1px solid #d7dde4;
+  // border: 1px solid #d7dde4;
   background: #f5f7f9;
   position: relative;
   border-radius: 4px;
@@ -207,6 +208,7 @@ export default {
     padding: 15px 0;
     background-color: rgba(73, 80, 96, 0.9);
     color: #fff;
+    font-size: inherit;
   }
 }
 @media (max-width: 900px) {
