@@ -1,5 +1,6 @@
 'use strict'
 const path = require('path')
+const fs = require('fs')
 const config = require('../config')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const packageConfig = require('../package.json')
@@ -98,4 +99,25 @@ exports.createNotifierCallback = () => {
       icon: path.join(__dirname, 'logo.png')
     })
   }
+}
+
+exports.replaceFontsPath = (cb) => {
+  const root = path.join(__dirname, '../');
+  fs.readdir(path.join(root, 'dist/static/css'), (err, files) => {
+    if (err) throw err;
+    files.forEach((item) => {
+      fs.readFile(path.join(root, 'dist/static/css', item), 'utf8', (errRead, data) => {
+        if (errRead) throw errRead;
+        if(!data.match(/static\/fonts/g)) {
+          cb('Fonts Path, No need to modify');
+          return;
+        }
+        let str = data.replace(/static\/fonts/g, '../fonts');
+        fs.writeFile(path.join(root, 'dist/static/css', item), str, 'utf8', (errWrite) => {
+          if (errWrite) throw errWrite;
+          cb('Font Path, modify success')
+        });
+      });
+    });
+  });
 }
