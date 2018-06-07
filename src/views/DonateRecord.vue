@@ -41,7 +41,7 @@ export default {
   data() {
     return {
       list: [],
-      loading: true,
+      loading: false,
       currentPage: 1,
       total: 0,
       pageSize: 20,

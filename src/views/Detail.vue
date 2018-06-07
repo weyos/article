@@ -75,7 +75,7 @@ export default {
       title: '',
       value: '',
       list: [],
-      loading: true,
+      loading: false,
       currentPage: 1,
       total: 0,
       pageSize: 20,
