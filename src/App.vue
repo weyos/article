@@ -67,8 +67,9 @@
             温馨提示
             <template slot="desc">
               <span v-if="checkResult.platform == 'ios'">检测到您正在使用移动端浏览，请检查是否安装<a href="https://itunes.apple.com/hk/app/nas-nano/id1281191905?l=zh&ls=1&mt=8">Nano钱包</a> </span>
-              <span v-else>检测到您正在使用移动端浏览，请检查是否安装<a href="https://nano.nebulas.io/index_cn.html">Nano钱包</a> </span>
-              <Input v-model="mobileAddress" :disabled="locked" placeholder="输入您的钱包地址">
+              <span v-else>检测到您正在使用移动端浏览，请检查是否安装<a href="https://nano.nebulas.io/index_cn.html">Nano钱包</a></span><br/>
+              <span v-if="!mobileAddress">您还未输入钱包地址哦！</span>
+              <Input v-model="mobileAddress" :disabled="locked" placeholder="请输入您的钱包地址">
                 <Button
                   @click="getLock"
                   slot="append"
