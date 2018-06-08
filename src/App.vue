@@ -63,6 +63,7 @@
       </Header>
       <Content>
         <div class="router-container_" style="min-height: 200px;">
+          <Alert style="text-align:center;">你发文章，<b>我打赏！</b>最高可获得<b>1NAS</b>！</Alert>
           <Alert v-if="checkResult.type === 'mobile'" type="warning">
             温馨提示
             <template slot="desc">
