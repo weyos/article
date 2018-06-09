@@ -119,7 +119,7 @@ export default {
         } else {
           this.list = data.list;
         }
-        console.log(data);
+        // console.log(data);
       }).catch((err) => {
         this.loading = false;
         this.ready = true;

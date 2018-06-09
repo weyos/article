@@ -45,6 +45,7 @@
 <script>
 import nebulas from 'nebulas';
 import NebPay from 'nebpay';
+import Utils from '../utils';
 
 import {
   DAPP_ADDRESS,
@@ -156,7 +157,9 @@ export default {
           });
           this.loading = true;
           // 调用合约
-          var callArgs = JSON.stringify([this.formValidate]);
+          const subData = JSON.parse(JSON.stringify(this.formValidate))
+          subData.value = Utils.encrypt(subData.value);
+          var callArgs = JSON.stringify([subData]);
           nebPay.call(DAPP_ADDRESS, '0', 'addArticle', callArgs, {
             callback: PAY_HOST,
             listener: (res) => {

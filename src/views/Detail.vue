@@ -61,6 +61,7 @@ import {
   DAPP_ADDRESS,
   HTTP_URL,
   PAY_HOST,
+  NEED_DECRYPT_ID,
 } from '../env';
 import Utils from '../utils';
 import ArticleCard from '../components/ArticleCard';
@@ -143,7 +144,15 @@ export default {
           data = JSON.parse(data);
         }
         this.articleInfo = data;
-        this.value = data.article;
+        if(ID >= NEED_DECRYPT_ID) {
+          let value = data.article;
+          try {
+            value = Utils.decrypt(data.article); 
+          } catch (error) {}
+          this.value = value;
+        } else {
+          this.value = data.article;
+        }
         // this.title = data.title;
         
         // 是否展示打赏按钮
@@ -212,7 +221,7 @@ export default {
         } else {
           this.list = data.list;
         }
-        console.log(data);
+        // console.log(data);
       }).catch((err) => {
         this.loading = false;
         this.$Message.error(err.message);

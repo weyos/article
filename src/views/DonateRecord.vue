@@ -135,7 +135,7 @@ export default {
         this.currentPage = data.pageNo;
         this.totalPage = Math.ceil(this.total/this.pageSize);
         this.list = data.list;
-        console.log(data);
+        // console.log(data);
       }).catch((err) => {
         this.loading = false;
         this.$Message.error(err.message);
