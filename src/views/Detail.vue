@@ -82,7 +82,7 @@ export default {
       totalPage: 0,
       discussDetail: '', //评论内容
       txhash: null,
-      showShangBtn: false,
+      showShangBtn: true,
       showModal: false,
       shangVal: '0.0001',
       articleInfo: {
@@ -145,21 +145,22 @@ export default {
         this.articleInfo = data;
         this.value = data.article;
         // this.title = data.title;
+        
         // 是否展示打赏按钮
-        if (data.type === 'free') {
-          this.showShangBtn = true;
-        }
-        if (data.type === 'total') {
-          const weiTotal = data.weiTotal || 0;
-          const nas = data.nas * 1e18;
-          let differ = nas - weiTotal > 0 ? (nas - weiTotal) / (1e18 * 1) : 0;
-          differ = new BigNumber(differ).toFormat();
-          if (differ > 0) {
-            this.showShangBtn = false;
-          } else {
-            this.showShangBtn = true;
-          }
-        }
+        // if (data.type === 'free') {
+        //   this.showShangBtn = true;
+        // }
+        // if (data.type === 'total') {
+        //   const weiTotal = data.weiTotal || 0;
+        //   const nas = data.nas * 1e18;
+        //   let differ = nas - weiTotal > 0 ? (nas - weiTotal) / (1e18 * 1) : 0;
+        //   differ = new BigNumber(differ).toFormat();
+        //   if (differ > 0) {
+        //     this.showShangBtn = false;
+        //   } else {
+        //     this.showShangBtn = true;
+        //   }
+        // }
         // console.log(data);
       }).catch((err) => {
         this.$Message.error(err.message);
