@@ -1,4 +1,5 @@
 import nebulas from 'nebulas';
+import CryptoJS from 'crypto-js';
 import store from '../store';
 
 const Account = nebulas.Account;
@@ -63,5 +64,21 @@ export default {
       type: 'pc',
       plugins: window.webExtensionWallet != undefined,
     };
+  },
+  encrypt(value) {
+    const key = CryptoJS.enc.Utf8.parse('xqgfhgdsdshtyrewewdsdsdsdvchhtjk');
+    const encrypted = CryptoJS.AES.encrypt(value, key, {
+      padding: CryptoJS.pad.Pkcs7,
+      mode: CryptoJS.mode.ECB,
+    });
+    return encrypted.toString();
+  },
+  decrypt(value) {
+    const key = CryptoJS.enc.Utf8.parse('xqgfhgdsdshtyrewewdsdsdsdvchhtjk');
+    const decrypted = CryptoJS.AES.decrypt(value, key, {
+      mode: CryptoJS.mode.ECB,
+      padding: CryptoJS.pad.Pkcs7,
+    });
+    return decrypted.toString(CryptoJS.enc.Utf8);
   },
 };

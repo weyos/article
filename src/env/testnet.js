@@ -4,6 +4,7 @@
 // n1un1kDU1rcMGJK1Bi9pLkCNZU8fSvYEzwH
 
 
-export const DAPP_ADDRESS = "n1un1kDU1rcMGJK1Bi9pLkCNZU8fSvYEzwH";
+export const DAPP_ADDRESS = 'n1un1kDU1rcMGJK1Bi9pLkCNZU8fSvYEzwH';
 export const HTTP_URL = 'https://testnet.nebulas.io';
 export const PAY_HOST = 'https://pay.nebulas.io/api/pay';
+export const NEED_DECRYPT_ID = 6;

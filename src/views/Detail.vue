@@ -61,6 +61,7 @@ import {
   DAPP_ADDRESS,
   HTTP_URL,
   PAY_HOST,
+  NEED_DECRYPT_ID,
 } from '../env';
 import Utils from '../utils';
 import ArticleCard from '../components/ArticleCard';
@@ -82,7 +83,7 @@ export default {
       totalPage: 0,
       discussDetail: '', //评论内容
       txhash: null,
-      showShangBtn: false,
+      showShangBtn: true,
       showModal: false,
       shangVal: '0.0001',
       articleInfo: {
@@ -143,23 +144,32 @@ export default {
           data = JSON.parse(data);
         }
         this.articleInfo = data;
-        this.value = data.article;
+        if(ID >= NEED_DECRYPT_ID) {
+          let value = data.article;
+          try {
+            value = Utils.decrypt(data.article); 
+          } catch (error) {}
+          this.value = value;
+        } else {
+          this.value = data.article;
+        }
         // this.title = data.title;
+        
         // 是否展示打赏按钮
-        if (data.type === 'free') {
-          this.showShangBtn = true;
-        }
-        if (data.type === 'total') {
-          const weiTotal = data.weiTotal || 0;
-          const nas = data.nas * 1e18;
-          let differ = nas - weiTotal > 0 ? (nas - weiTotal) / (1e18 * 1) : 0;
-          differ = new BigNumber(differ).toFormat();
-          if (differ > 0) {
-            this.showShangBtn = false;
-          } else {
-            this.showShangBtn = true;
-          }
-        }
+        // if (data.type === 'free') {
+        //   this.showShangBtn = true;
+        // }
+        // if (data.type === 'total') {
+        //   const weiTotal = data.weiTotal || 0;
+        //   const nas = data.nas * 1e18;
+        //   let differ = nas - weiTotal > 0 ? (nas - weiTotal) / (1e18 * 1) : 0;
+        //   differ = new BigNumber(differ).toFormat();
+        //   if (differ > 0) {
+        //     this.showShangBtn = false;
+        //   } else {
+        //     this.showShangBtn = true;
+        //   }
+        // }
         // console.log(data);
       }).catch((err) => {
         this.$Message.error(err.message);
@@ -211,7 +221,7 @@ export default {
         } else {
           this.list = data.list;
         }
-        console.log(data);
+        // console.log(data);
       }).catch((err) => {
         this.loading = false;
         this.$Message.error(err.message);
